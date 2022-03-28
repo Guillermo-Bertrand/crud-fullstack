@@ -1,0 +1,9 @@
+<div class="centered-pages">
+    
+    <!-- If pages exists/is not null and its length es greater than 0, do list. -->
+    <ul class="pagination" *ngIf="pages?.length>0">
+        <li class="page-item" *ngFor="let page of pages">
+            <a class="page-link" [routerLink]="['/customers/page', page-1]">{{page}}</a>
+        </li>
+    </ul>
+</div>

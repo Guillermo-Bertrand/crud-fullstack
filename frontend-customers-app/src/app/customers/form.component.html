@@ -1,0 +1,64 @@
+<div class="container pull-down-container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header">{{title}}</div>
+        <div class="card-body">
+    
+            <form>
+                <div class="form-group-row">
+                    <label>Name</label>
+                    <input class="form-control" type="text" [(ngModel)]="customer.name" name="nameTxt" placeholder="Write customer's name" required minlength="4" #nameTxt="ngModel">
+
+                    <!-- .invalid it's an event that occurs when in a form something isn't valid, like that field is required but it has no data. -->
+                    <!-- .dirty it's kind of while writing event, or keypress. -->
+                    <!-- .touched ocurrs when control lose the focus, so it was clicked and has no data. -->
+                    <div class="alert alert-danger" *ngIf="nameTxt.invalid && (nameTxt.dirty || nameTxt.touched)">
+                        <div *ngIf="nameTxt.errors['minlength']">
+                            Customer's name has to be 4 caracters at least.
+                        </div>
+                        <div *ngIf="nameTxt.errors['required']">
+                            Customer's name is required.
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group-row">
+                    <label>Last name</label>
+                    <input class="form-control" type="text" [(ngModel)]="customer.lastName" name="lastNameTxt" placeholder="Write customer's last name" required minlength="4" #lastNameTxt="ngModel">
+                
+                    <div class="alert alert-danger" *ngIf="lastNameTxt.invalid && (lastNameTxt.dirty || lastNameTxt.touched)">
+                        <div *ngIf="lastNameTxt.errors['required']">
+                            customer's last name is required.
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="form-group-row">
+                    <label>Email</label>
+                    <input class="form-control" type="text" [(ngModel)]="customer.email" name="emailTxt" placeholder="Write customer's email" required email #emailTxt="ngModel">
+                
+                    <div class="alert alert-danger" *ngIf="emailTxt.invalid && (emailTxt.dirty || emailTxt.touched)">
+
+                        <!-- Use an ngIf to show to user the error, each. -->
+
+                        <div *ngIf="emailTxt.errors['required']">
+                            Customer's email is required.
+                        </div>
+                        <div *ngIf="emailTxt.errors['email']">
+                            Email is incorrectly typed.
+                        </div>
+                    </div>
+                
+                </div>
+        
+                <div class="form-group-row">
+                    <button class="btn btn-primary pull-down-button" (click)="createCustomer()" *ngIf="!customerId else elseBlock">Add</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary pull-down-button" (click)="updateCustomer()">Update</button>
+                    </ng-template>
+                 </div>
+            </form>
+        
+        </div>
+      </div>
+</div>

@@ -1,0 +1,29 @@
+.table-content{
+    margin-top: 45px;
+}
+tr, td{
+    text-align: center;
+}
+.actions-container{
+    width: 300px;
+}
+.action-button{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.no-data{
+    margin-top: 10vh;
+}
+.crud-card{
+    margin-top: 10px;
+}
+.with-photo{
+    width: 100px;
+}
+.no-photo{
+    width: 64px;
+}
+img:hover{
+    opacity: .8;
+    cursor: pointer;
+}

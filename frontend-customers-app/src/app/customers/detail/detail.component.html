@@ -1,0 +1,56 @@
+<div *ngIf="currentCustomer" class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Customer details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+
+              <div class="col">
+                  <div class="row">
+                    <label>Name: <span>{{currentCustomer.name}}</span> </label>
+                  </div>
+
+                  <div class="row">
+                    <label>Last name: <span>{{currentCustomer.lastName}}</span> </label>
+                  </div>
+
+                  <div class="row">
+                    <label>Email: <span>{{currentCustomer.email}}</span></label>
+                  </div>
+                  
+                  <div class="row">
+                    <label>Created at: <span>{{currentCustomer.created}}</span> </label>
+                  </div>
+
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="inputGroupFile04" (change)="selectImage($event)">
+                      <label class="custom-file-label" for="inputGroupFile04">Choose image</label>
+                    </div>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" (click)="uploadImage()">Upload image</button>
+                    </div>
+                  </div>
+              </div>
+              
+              <div *ngIf="currentCustomer?.photo" class="col">
+                  <img *ngIf="currentCustomer?.photo" src="http://localhost:8080/api/uploads/img/{{currentCustomer.photo}}" alt="..." class="img-thumbnail rounded">
+              </div>
+
+          </div>
+      </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

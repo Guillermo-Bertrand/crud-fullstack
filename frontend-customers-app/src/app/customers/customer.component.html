@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="card bg-light mb-3 crud-card">
+        <!--<div class="card-header">Customers</div>-->
+        <div class="card-body">
+          
+            <div class="container no-data alert alert-primary" role="alert" *ngIf="customers?.length == 0 else elseBlock">
+                There aren't any register in database
+            </div>
+    
+            <ng-template #elseBlock>
+                <div class="container table-content">
+            
+                    <table class="table table-striped border border-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>LastName</th>
+                                <th>Email</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let customer of customers">
+                                <td> 
+                                    <img *ngIf="customer.photo" alt="customer's image" class="img-thumbnail rounded with-photo" 
+                                    src="http://localhost:8080/api/uploads/img/{{customer.photo}}" (click)="startModal(customer)" data-toggle="modal" data-target="#detailModal">
+                                    
+                                    <img *ngIf="!customer.photo" alt="no user image" class="img-thumbnail rounded no-photo" 
+                                    src="./assets/user.png" (click)="startModal(customer)" data-toggle="modal" data-target="#detailModal">
+                                    
+                                    <detail *ngIf="modalActivated && customerSelected" [currentCustomer]="customerSelected"></detail>
+                                </td>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.lastName}}</td>
+                                <td>{{customer.email}}</td>
+                                <td>{{customer.created}}</td>
+                                <td class="actions-container">
+                                    <a class="btn btn-info action-button" [routerLink]="['/customers/form', customer.id]">Edit</a>
+                                    <a class="btn btn-danger action-button" (click)="deleteCustomer(customer)">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--paginator is the attribute's name in paginatorComponent
+                    And jsonData attribute's name here in customerComponent.-->
+
+                    <!-- Evaluate if jsonData isn't null/exists, then apply injection to its child.  -->
+                    <paginator *ngIf="jsonData" [paginator]="jsonData"></paginator>
+                </div>
+            </ng-template>
+        </div>
+      </div>
+</div>
